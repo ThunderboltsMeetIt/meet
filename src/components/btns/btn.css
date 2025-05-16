@@ -1,41 +1,12 @@
-.btn-starOn {
-    width: 50px;
-    aspect-ratio: 1;
-    position: relative;
-    float: right;
-    background: #F8CA00;
-    clip-path: polygon(50% 0,
-    calc(50%*(1 + sin(.4turn))) calc(50%*(1 - cos(.4turn))),
-    calc(50%*(1 - sin(.2turn))) calc(50%*(1 - cos(.2turn))),
-    calc(50%*(1 + sin(.2turn))) calc(50%*(1 - cos(.2turn))),
-    calc(50%*(1 - sin(.4turn))) calc(50%*(1 - cos(.4turn)))
-    );
+.ibtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin: 0.3rem 0;
+    transition: transform 0.1s ease;
 }
 
-.btn-starOff {
-    width: 50px;
-    aspect-ratio: 1;
-    position: relative;
-    float: right;
-    background: #585858;
-    clip-path: polygon(50% 0,
-    calc(50%*(1 + sin(.4turn))) calc(50%*(1 - cos(.4turn))),
-    calc(50%*(1 - sin(.2turn))) calc(50%*(1 - cos(.2turn))),
-    calc(50%*(1 + sin(.2turn))) calc(50%*(1 - cos(.2turn))),
-    calc(50%*(1 - sin(.4turn))) calc(50%*(1 - cos(.4turn)))
-    );
-}
-
-.btn-upvoteOn {
-    height: 40px;
-    aspect-ratio: 1;
-    clip-path: polygon(50% 0,100% 100%,0 100%);
-    background: #7AB317;
-}
-
-.btn-upvoteOff{
-    height: 40px;
-    aspect-ratio: 1;
-    clip-path: polygon(50% 0,100% 100%,0 100%);
-    background: #585858;
+.ibtn:hover {
+    transform: scale(1.4);
 }

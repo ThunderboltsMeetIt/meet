@@ -1,9 +1,7 @@
-import type {QuoteData} from "@/lib/qoute.ts";
-
-export default function Quote({quote}: {quote: Partial<QuoteData>}) {
+export default function Quote({quote}) {
     return (
         <>
-            <p>{quote.title}</p>
+            <h3 className="text-xl font-medium mb-2">{quote.title}</h3>
             <p>{quote.text}</p>
         </>
     );

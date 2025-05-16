@@ -10,15 +10,13 @@ interface Props {
     onSubmit: () => void;
 }
 
-export default function UploadInput({onSubmit}: Props): JSX.Element {
+export default function Analyze({onSubmit}: Props): JSX.Element {
     const [inputText, setInputText] = useState('');
     const [isReadOnly, setIsReadOnly] = useState(false);
 
     const handleSend = () => {
         console.log('Sending:', inputText);
 
-
-        saveInterpretation({uuid: getRandomUUID(),content: inputText, category: "" })
         setIsReadOnly(true);
     };
 
@@ -27,26 +25,20 @@ export default function UploadInput({onSubmit}: Props): JSX.Element {
     };
 
     return (
-
-            <div className="space-y-4 p-6">
-
+            <div className="">
                 <Textarea
-                        placeholder="Type your interpretation here..."
+                        placeholder="How do you feel today?"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         readOnly={isReadOnly}
                         className=" mx-auto min-h-[120px]"
                 />
                 <div className="w-full flex justify-end gap-4">
-                    {isReadOnly ? (
-                            <Button onClick={handleEdit} className="w-[120px]">
-                                Edit
+                    {!isReadOnly && (
+                            <Button onClick={handleSend} className="w-[120px] mt-5">
+                                Find a quote
                             </Button>
-                    ) : (
-                            <Button onClick={handleSend} className="w-[120px]">
-                                Send
-                            </Button>
-                    )}
+                    ) }
                 </div>
             </div>
     );

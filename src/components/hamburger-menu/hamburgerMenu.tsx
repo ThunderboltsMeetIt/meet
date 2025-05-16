@@ -8,8 +8,12 @@ import {
     SidebarMenuButton,
     SidebarMenuItem, useSidebar,
 } from "@/components/ui/sidebar"
+import {useContext} from "react";
+import {PageContext} from "@/lib/currentPage.ts"
 
 export default function HamburgerMenu() {
+    const {currentPage, setCurrentPage} = useContext(PageContext);
+
     return (
             <>
                 <Sidebar collapsible="offcanvas">
@@ -20,8 +24,13 @@ export default function HamburgerMenu() {
                                 <SidebarMenu>
                                     <SidebarMenuItem>
                                         <SidebarMenuButton asChild>
-                                            <a href="">
-                                                Abecadlo
+                                            <a onClick={() => setCurrentPage("intro")}>
+                                                Daily Quote
+                                            </a>
+                                        </SidebarMenuButton>
+                                        <SidebarMenuButton asChild>
+                                            <a onClick={() => setCurrentPage("calendar")}>
+                                                Calendar
                                             </a>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>

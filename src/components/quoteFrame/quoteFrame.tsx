@@ -1,37 +1,40 @@
-import quotes, {type QuoteData} from "@/lib/qoute.ts";
-import StarBtn from "@/components/btns/star.tsx"
-import UpvoteBtn from "@/components/btns/upvote.tsx"
+import * as React from "react";
+
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+import UpvoteBtn from "@/components/btns/upvote.tsx";
+import StarBtn from "@/components/btns/star.tsx";
 import Quote from "@/components/quote/quote.tsx";
-import './quoteFrame.css'
-import {useState} from "react";
+import './quoteFrame.css';
+import {useContext} from "react";
+import {DatabaseContext} from "@/lib/database.ts";
 
-export default function QuoteFrame({quote}: {quote: Partial<QuoteData>}) {
-        const [upvoted, setUpvoted] = useState(false);
-        const [starred, setStarred] = useState(false);
+export default function QuoteFrame({quoteId, upvoted, starred, onUpvote, onStar,}) {
+    const {database, setDatabase} = useContext(DatabaseContext);
+    const quote = database.quotes[quoteId];
+    const source = database.sources[quote.sourceId];
+    const category = database.categories[quote.categoryId];
 
-        const handleUpvote = () => {
-            setUpvoted(!upvoted);
-        };
-
-        const handleStar = () => {
-            setStarred(!starred);
-        };
-
-        return (
-                <div className="quote-frame">
-                    <div className="quote-buttons">
-                        <UpvoteBtn filled={upvoted} onClick={handleUpvote} />
-                        <div className="quote-component">
-                            <Quote quote={quote} />
+    return (
+            <Card className="quote-frame">
+                <CardContent>
+                    <div className="flex flex-row gap-x-4">
+                        <div className="flex flex-col gap-y-1">
+                            <UpvoteBtn filled={upvoted} onClick={onUpvote} />
+                            <StarBtn filled={starred} onClick={onStar} />
                         </div>
-                        <StarBtn filled={starred} onClick={handleStar} />
+                        <div>
+                            <div className="quote-component">
+                                <Quote quote={quote} />
+                            </div>
+                            <div className="quote-info">
+                                <p>Source: {source ? source.name : "Unknown source"}</p>
+                                <p>Tags: {quote.tagIds.map(id => database.tags[id].name).join(", ")}</p>
+                                <p>Category: {category ? category.name : "Unknown source"}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="quote-info">
-                        <p>Source ID: {quote.sourceId}</p>
-                        <p>Tags ID: {quote.tagIds?.join(', ')}</p>
-                        <p>Category ID: {quote.categoryId}</p>
-                    </div>
-                </div>
-        );
-    }
+                </CardContent>
+            </Card>
+    );
 }

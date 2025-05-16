@@ -1,4 +1,5 @@
-import './btn.css'
+import "./btn.css";
+import {Star} from 'lucide-react';
 
 interface Props {
     filled: boolean;
@@ -6,9 +7,15 @@ interface Props {
 }
 
 
-export default function StarBtn({filled, onClick} : Props){
+
+export default function StarBtn({ filled, onClick }: Props) {
     return (
-        <>
-            <span className={filled ? "btn-starOn" : "btn-starOff"} onClick={onClick}></span>
-        </>);
+            <button className="ibtn" onClick={onClick}>
+                <Star
+                        color={filled ? '#FFD700' : '#C0C0C0'}
+                        size={24}
+                        fill={filled ? 'yellow' : 'grey'}
+                />
+            </button>
+    );
 }

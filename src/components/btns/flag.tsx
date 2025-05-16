@@ -1,16 +1,18 @@
 import "./btn.css";
-import {Heart} from 'lucide-react';
+import {Flag} from 'lucide-react';
 
 interface Props {
     filled: boolean;
     onClick: () => void;
 }
 
-export default function UpvoteBtn({filled, onClick} : Props){
+
+
+export default function FlagBtn({ filled, onClick }: Props) {
     return (
             <button className="ibtn" onClick={onClick}>
-                <Heart
-                        color={filled ? '#FF0000' : '#C0C0C0'}
+                <Flag
+                        color={filled ? '#0A0A0A' : '#C0C0C0'}
                         size={24}
                         fill={filled ? 'red' : 'grey'}
                 />
