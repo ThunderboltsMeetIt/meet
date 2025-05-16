@@ -1,53 +1,51 @@
-import React, { useState } from 'react';
+'use client';
 
-export default function InterpretationEditor(): React.JSX.Element {
+import { type JSX, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import {saveInterpretation} from "@/lib/interpretation.ts";
+import getRandomUUID from "@/lib/uuid.ts";
+
+interface Props {
+    onSubmit: () => void;
+}
+
+export default function UploadInput({onSubmit}: Props): JSX.Element {
     const [inputText, setInputText] = useState('');
+    const [isReadOnly, setIsReadOnly] = useState(false);
 
     const handleSend = () => {
         console.log('Sending:', inputText);
-        setInputText('');
+
+
+        saveInterpretation({uuid: getRandomUUID(),content: inputText, category: "" })
+        setIsReadOnly(true);
+    };
+
+    const handleEdit = () => {
+        setIsReadOnly(false);
     };
 
     return (
-            <div style={styles.container}>
-      <textarea
-              style={styles.textarea}
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="Type your message here..."
-      />
-                <button style={styles.button} onClick={handleSend}>
-                    Send/Upload
-                </button>
+            <div className="space-y-4 p-6">
+                <Textarea
+                        placeholder="Type your interpretation here..."
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        readOnly={isReadOnly}
+                        className=" mx-auto min-h-[120px]"
+                />
+                <div className="w-full flex justify-end gap-4">
+                    {isReadOnly ? (
+                            <Button onClick={handleEdit} className="w-[120px]">
+                                Edit
+                            </Button>
+                    ) : (
+                            <Button onClick={handleSend} className="w-[120px]">
+                                Send
+                            </Button>
+                    )}
+                </div>
             </div>
     );
 }
-
-const styles: { [key: string]: React.CSSProperties } = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-        maxWidth: '400px',
-        margin: '0 auto',
-        padding: '20px',
-    },
-    textarea: {
-        resize: 'vertical',
-        minHeight: '100px',
-        padding: '10px',
-        fontSize: '16px',
-        borderRadius: '8px',
-        border: '1px solid #ccc',
-        fontFamily: 'inherit',
-    },
-    button: {
-        padding: '12px',
-        fontSize: '16px',
-        backgroundColor: '#007bff',
-        color: 'white',
-        border: 'none',
-        borderRadius: '8px',
-        cursor: 'pointer',
-    },
-};
