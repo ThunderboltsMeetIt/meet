@@ -1,20 +1,17 @@
-import Quote from "@/components/quote/quote.tsx";
 import InterpretationEditor from "@/components/interpretationEditor/interpretationEditor.tsx"
-import {getAllInterpretations, saveInterpretation} from "@/lib/interpretation.ts";
-import Interpretation from "@/components/interpretation/interpretation.tsx";
-import {getRandomQuote} from "@/lib/qoute.ts";
-import {Textarea} from "@/components/ui/textarea.tsx";
-import {Button} from "@/components/ui/button.tsx";
-import {useState} from "react";
-import getRandomUUID from "@/lib/uuid.ts";
-import Analyze from "@/components/analyze/analyze.tsx";
+import {useContext, useState} from "react";
 import GetDate from "@/components/date/date.tsx";
 import QuoteFrame from "@/components/quoteFrame/quoteFrame.tsx";
+import Interpretation from  "@/components/interpretation/interpretation.tsx";
+import InterpretationList from "@/components/interpretation-list/interpretationList.tsx";
+import {DatabaseContext} from "@/lib/database.ts";
 
-export default function DailyQuotePage({quoteId}) {
+export default function DailyQuotePage({quoteId , date = GetDate('/')}) {
     const [upvoted, setUpvoted] = useState(false);
     const [starred, setStarred] = useState(false);
-    const date = GetDate('/');
+    const [loading, setLoading] = useState(false);
+    const {database, setDatabase} = useContext(DatabaseContext);
+    // const date = GetDate('/');
 
     return (
             <div className="m-5 flex flex-row">
@@ -28,9 +25,8 @@ export default function DailyQuotePage({quoteId}) {
                             onUpvote={() => setUpvoted(!upvoted)}
                             onStar={() => setStarred(!starred)}
                     />
-                    <InterpretationEditor onSubmit={() => {
-                        setInterpretations(getAllInterpretations());
-                    }}/>
+                    <InterpretationEditor quoteId={quoteId} onSubmit={() => {setLoading(true)}}/>
+                    {loading && <InterpretationList ids={[quoteId]}/>}
                     {/*<Interpretation*/}
                     {/*        interpretation={{ content: "This is a deep insight." }}*/}
                     {/*        // onStarClick={() => console.log('Star clicked')}*/}

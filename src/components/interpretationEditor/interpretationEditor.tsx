@@ -6,19 +6,12 @@ import { Textarea } from '@/components/ui/textarea';
 import {saveInterpretation} from "@/lib/interpretation.ts";
 import getRandomUUID from "@/lib/uuid.ts";
 
-interface Props {
-    onSubmit: () => void;
-}
-
-export default function UploadInput({onSubmit}: Props): JSX.Element {
+export default function UploadInput({onSubmit}) {
     const [inputText, setInputText] = useState('');
     const [isReadOnly, setIsReadOnly] = useState(false);
 
     const handleSend = () => {
-        console.log('Sending:', inputText);
-
-
-        saveInterpretation({uuid: getRandomUUID(),content: inputText, category: "" })
+        onSubmit(inputText);
         setIsReadOnly(true);
     };
 

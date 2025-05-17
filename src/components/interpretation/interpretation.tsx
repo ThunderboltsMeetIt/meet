@@ -8,6 +8,7 @@ import UpvoteBtn from "@/components/btns/upvote.tsx";
 import * as React from "react";
 import {useContext, useState} from "react";
 import {DatabaseContext} from "@/lib/database.ts";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface Props {
     interpretation: Interpretation;
@@ -23,15 +24,19 @@ export default function Interpretation({ interpretationId, onStarClick, onFlagCl
     const {database, setDatabase} = useContext(DatabaseContext);
     const interpretation = database.interpretations[interpretationId];
     return (
-            <div className="interpretation-container">
-                <div className="interpretation-actions">
-                    <FlagBtn filled={flagged} onClick={() => setFlagged(!flagged)} />
-                    <StarBtn filled={starred} onClick={() => setStarred(!starred)} />
-                    <UpvoteBtn filled={upvoted} onClick={() => setUpvoted(!upvoted)} />
-                </div>
-                <div className="interpretation-text">
-                    {interpretation.text}
-                </div>
-            </div>
+            <Card className="interpretation-container rounded-xl">
+                <CardContent className="flex flex-col gap-y-2">
+                    <div>
+                        {interpretation.text}
+                    </div>
+                    <div className="flex flex-row gap-x-2">
+                        <StarBtn filled={starred} onClick={() => setStarred(!starred)} />
+                        <UpvoteBtn filled={upvoted} onClick={() => setUpvoted(!upvoted)} />
+                        <span className="ml-auto">
+                            <FlagBtn filled={flagged} onClick={() => setFlagged(!flagged)} />
+                        </span>
+                    </div>
+                </CardContent>
+            </Card>
     );
 }

@@ -26,7 +26,7 @@ export default function IntroPage({onQuoteSelected}) {
                             Or get a more personalised choice
                         </p>
                     </div>
-                    <Analyze/>
+                    <Analyze onSubmit={(quoteId) => onQuoteSelected(getRandomQuote())}/>
                 </div>
             </div>
     )

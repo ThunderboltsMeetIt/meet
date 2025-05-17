@@ -1,14 +1,7 @@
 import "./btn.css";
 import {Flag} from 'lucide-react';
 
-interface Props {
-    filled: boolean;
-    onClick: () => void;
-}
-
-
-
-export default function FlagBtn({ filled, onClick }: Props) {
+export default function FlagBtn({ filled, onClick }) {
     return (
             <button className="ibtn" onClick={onClick}>
                 <Flag

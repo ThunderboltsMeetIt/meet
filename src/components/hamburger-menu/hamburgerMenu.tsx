@@ -33,6 +33,11 @@ export default function HamburgerMenu() {
                                                 Calendar
                                             </a>
                                         </SidebarMenuButton>
+                                        <SidebarMenuButton asChild>
+                                            <a onClick={() => setCurrentPage("reintro")}>
+                                                Second visit
+                                            </a>
+                                        </SidebarMenuButton>
                                     </SidebarMenuItem>
                                 </SidebarMenu>
                             </SidebarGroupContent>
