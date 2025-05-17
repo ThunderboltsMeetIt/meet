@@ -8,12 +8,15 @@ import Quote from "@/components/quote/quote.tsx";
 import './quoteFrame.css';
 import {useContext} from "react";
 import {DatabaseContext} from "@/lib/database.ts";
+import {PageContext} from "@/lib/currentPage.ts";
 
 export default function QuoteFrame({quoteId, upvoted, starred, onUpvote, onStar,}) {
     const {database, setDatabase} = useContext(DatabaseContext);
     const quote = database.quotes[quoteId];
     const source = database.sources[quote.sourceId];
     const category = database.categories[quote.categoryId];
+
+    const {currentPage, setCurrentPage} = useContext(PageContext);
 
     return (
             <Card className="quote-frame">
@@ -30,7 +33,10 @@ export default function QuoteFrame({quoteId, upvoted, starred, onUpvote, onStar,
                             <div className="quote-info">
                                 <p>Source: {source ? source.name : "Unknown source"}</p>
                                 <p>Tags: {quote.tagIds.map(id => database.tags[id].name).join(", ")}</p>
-                                <p>Category: {category ? category.name : "Unknown source"}</p>
+                                <p>Category: {category ?
+                                        <a className="frame-link" onClick={() => setCurrentPage(category.name)}>
+                                            {category.name}
+                                        </a> : "Unknown source"}</p>
                             </div>
                         </div>
                     </div>

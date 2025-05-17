@@ -19,7 +19,7 @@ export default function DailyQuotePage({quoteId}) {
     return (
             <div className="m-5 flex flex-row">
                 <div className="mx-auto w-[600px] flex flex-col">
-                    <p className="text-2xl mb-2">{date}</p>
+                    <p className="text-2xl mb-2 mt-5">{date}</p>
                     <h2 className="mb-5 text-3xl font-bold">Daily Quote</h2>
                     <QuoteFrame
                             quoteId={quoteId}

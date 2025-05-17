@@ -1,24 +1,17 @@
 import './App.css'
-import Quote from "@/components/quote/quote.tsx";
-import GetDate from "@/components/date/date.tsx";
-import InterpretationEditor from "@/components/interpretationEditor/interpretationEditor.tsx"
 import HamburgerMenu from "@/components/hamburger-menu/hamburgerMenu.tsx";
-import StarBtn from "@/components/btns/star.tsx";
-import UpvoteBtn from "@/components/btns/upvote.tsx";
 import {SidebarProvider} from "@/components/ui/sidebar.tsx";
 import TopBar from "@/components/topBar/topBar.tsx";
 import {useState} from "react";
-import {getAllInterpretations} from "@/lib/interpretation.ts";
-import Interpretation from "@/components/interpretation/interpretation.tsx";
 import DailyQuotePage from "@/components/dailyquotepage/dailyquotepage.tsx";
-import {getRandomQuote, quotes} from "@/lib/qoute.ts";
-import Analyze from "@/components/analyze/analyze.tsx";
 import IntroPage from "@/components/intro-page/IntroPage.tsx";
 // import CalendarView from "@/components/calendarView/calendarView.tsx";
 import {DatabaseContext} from "@/lib/database.ts";
 import {PageContext} from "@/lib/currentPage.ts";
 import InterpretationList from "@/components/interpretation-list/interpretationList.tsx";
 import CalendarView from "@/components/calendarView/calendarView.tsx";
+import InfoFrameCategory from "@/components/infoFrame/infoFrame.tsx";
+import AIChat from "@/components/ai/ai.tsx";
 
 function App() {
     const [database, setDatabase] = useState({
@@ -102,24 +95,33 @@ function App() {
     const showAllPages = true;
     console.log("currentPage " + currentPage);
 
+    const [dailyQuote, setDailyQuote] = useState("q-2.1");
+
+    const navigateToDailyQuote = (quoteId) => {
+        setDailyQuote(quoteId);
+        setCurrentPage("daily");
+    }
+
     // @ts-ignore
     return (
         <>
             <SidebarProvider defaultOpen={false} className="w-full flex flex-col">
                 <DatabaseContext.Provider value={{database, setDatabase}}>
                     <PageContext.Provider value={{currentPage, setCurrentPage}}>
+                        <HamburgerMenu />
+                        <TopBar />
                         <main>
-                            <HamburgerMenu />
-                            <TopBar />
-
-                            {(currentPage == "intro" || showAllPages) && <IntroPage />}
+                            <InfoFrameCategory categoryName= 'Stoicyzm'></InfoFrameCategory>
+                            {(currentPage == "intro" || showAllPages) && <IntroPage onQuoteSelected={navigateToDailyQuote} />}
                             { showAllPages && <hr />}
-                            {(currentPage == "daily" || showAllPages) && <DailyQuotePage quoteId={"q-2.1"} />}
+                            {(currentPage == "daily" || showAllPages) && <DailyQuotePage quoteId={dailyQuote} />}
                             { showAllPages && <hr />}
                             {(currentPage == "calendar" || showAllPages) && <CalendarView />}
 
                             { showAllPages && <>
                                 <hr />
+                                <h1>AI Chat Demo</h1>
+                                <AIChat/>
                                 <h1 className="text-5xl">Tu są losowe testy poniżej</h1>
                                 <InterpretationList />
                             </>}

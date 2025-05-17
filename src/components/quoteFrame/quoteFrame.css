@@ -8,6 +8,10 @@
     background-color: #f9f9f9;
 }
 
+.frame-link{
+    cursor: pointer;
+}
+
 /*.quote-buttons {*/
 /*    display: flex;*/
 /*    align-items: center;*/

@@ -4,6 +4,10 @@
     font-family: Inter, 'Helvetica', 'Arial', sans-serif;
 }
 
+body {
+    background-color: oklch(0.99 0.05 140);
+}
+
 /*#root {*/
 /*  max-width: 1280px;*/
 /*  margin: 0 auto;*/

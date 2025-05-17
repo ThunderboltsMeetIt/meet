@@ -28,7 +28,7 @@ export default function UploadInput({onSubmit}: Props): JSX.Element {
 
     return (
 
-            <div className="space-y-4 p-6">
+            <div className="space-y-4 mt-6">
 
                 <Textarea
                         placeholder="Type your interpretation here..."
@@ -39,12 +39,12 @@ export default function UploadInput({onSubmit}: Props): JSX.Element {
                 />
                 <div className="w-full flex justify-end gap-4">
                     {isReadOnly ? (
-                            <Button onClick={handleEdit} className="w-[120px]">
+                            <Button variant="outline" onClick={handleEdit} className="w-[120px]">
                                 Edit
                             </Button>
                     ) : (
                             <Button onClick={handleSend} className="w-[120px]">
-                                Send
+                                Save
                             </Button>
                     )}
                 </div>
