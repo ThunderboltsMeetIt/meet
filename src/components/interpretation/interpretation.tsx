@@ -12,7 +12,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 interface Props {
     interpretation: Interpretation;
-    // onStarClick?: () => void;
     onFlagClick?: () => void;
     onUpvoteClick?: () => void;
 }

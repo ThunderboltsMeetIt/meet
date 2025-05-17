@@ -123,12 +123,12 @@ export default function CalendarView() {
                                 day === today.getDate() &&
                                 currentMonth === today.getMonth() &&
                                 currentYear === today.getFullYear();
-
+                        const selectedDate = new Date(currentYear, currentMonth, day);
                         return (
                                 <button
                                         key={idx}
                                         className={`p-3 border rounded-lg transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500
-                            ${isToday ? "bg-yellow-400 text-yellow-900 font-semibold shadow-lg" : "bg-white text-gray-900"}
+                            ${isToday ? "bg-yellow-400 text-yellow-900 font-semibold shadow-lg" : (selectedDate > today ? "bg-gray-50 text-gray-500" : "bg-white text-gray-900")}
                             hover:bg-blue-100`}
                                         onClick={() => handleDayClick(day)}
                                 >
@@ -140,14 +140,12 @@ export default function CalendarView() {
 
                 <br />
 
-                {/* Modal with QuoteFrame */}
                 {showModal && selectedDay !== null && (
-                        <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full max-h-[400px] overflow-auto relative">
+                        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-h-[400px] overflow-auto relative">
                             <h2 className="text-xl font-bold mb-4 text-center">
                                 Day {selectedDay} Info
                             </h2>
 
-                            {/* Display quote only for past or present dates */}
                             <DailyQuotePage quoteId={"q-2.1"} date={null} />
 
                             <div className="flex justify-center mt-6">

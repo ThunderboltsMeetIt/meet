@@ -10,7 +10,6 @@ export default function DailyQuotePage({quoteId , date = GetDate('/')}) {
     const [starred, setStarred] = useState(false);
     const [loading, setLoading] = useState(false);
     const {database, setDatabase} = useContext(DatabaseContext);
-    // const date = GetDate('/');
 
     return (
             <div className="m-5 flex flex-row">
@@ -26,12 +25,6 @@ export default function DailyQuotePage({quoteId , date = GetDate('/')}) {
                     />
                     <InterpretationEditor quoteId={quoteId} onSubmit={() => {setLoading(true)}}/>
                     {loading && <InterpretationList ids={[quoteId]}/>}
-                    {/*<Interpretation*/}
-                    {/*        interpretation={{ content: "This is a deep insight." }}*/}
-                    {/*        // onStarClick={() => console.log('Star clicked')}*/}
-                    {/*        onFlagClick={() => console.log('Flag clicked')}*/}
-                    {/*        onUpvoteClick={() => console.log('Upvote clicked')}*/}
-                    {/*/>*/}
                 </div>
             </div>
     );

@@ -13,19 +13,8 @@ import {Menu} from "lucide-react"
 
 export default function HamburgerMenu() {
     const {
-        state,
-        open,
-        setOpen,
-        openMobile,
-        setOpenMobile,
-        isMobile,
         toggleSidebar,
     } = useSidebar();
-
-    // const toggle = () => {
-    //     setOpen(!open);
-    //     setOpenMobile(!open);
-    // }
 
     return (
             <>

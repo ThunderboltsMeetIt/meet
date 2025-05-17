@@ -3,10 +3,9 @@ import {
     SidebarContent,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuButton,
-    SidebarMenuItem, useSidebar,
+    SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import {useContext} from "react";
 import {PageContext} from "@/lib/currentPage.ts"
@@ -19,7 +18,6 @@ export default function HamburgerMenu() {
                 <Sidebar collapsible="offcanvas">
                     <SidebarContent>
                         <SidebarGroup>
-                            {/*<SidebarGroupLabel>Application</SidebarGroupLabel>*/}
                             <SidebarGroupContent>
                                 <SidebarMenu>
                                     <SidebarMenuItem>
@@ -33,11 +31,11 @@ export default function HamburgerMenu() {
                                                 Calendar
                                             </a>
                                         </SidebarMenuButton>
-                                        <SidebarMenuButton asChild>
-                                            <a onClick={() => setCurrentPage("reintro")}>
-                                                Second visit
-                                            </a>
-                                        </SidebarMenuButton>
+                                        {/*<SidebarMenuButton asChild>*/}
+                                        {/*    <a onClick={() => setCurrentPage("reintro")}>*/}
+                                        {/*        Second visit*/}
+                                        {/*    </a>*/}
+                                        {/*</SidebarMenuButton>*/}
                                     </SidebarMenuItem>
                                 </SidebarMenu>
                             </SidebarGroupContent>

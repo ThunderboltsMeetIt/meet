@@ -7,8 +7,6 @@ import { Textarea } from '@/components/ui/textarea';
 interface Props {
     onSubmit: (result: string) => void;
 }
-
-// Dummy AI function simulating your tag matcher
 const simpleBotReply = (input: string): string => {
     const tagKeywords: Record<string, { name: string; keywords: string[] }> = {
         "tag-1": {
@@ -31,7 +29,6 @@ const simpleBotReply = (input: string): string => {
 
     const lower = input.toLowerCase();
 
-    // Instead of Object.values, use Object.entries to keep keys
     const tagMatches = Object.entries(tagKeywords).map(([key, { keywords }]) => {
         const count = keywords.reduce((acc, kw) => (lower.includes(kw) ? acc + 1 : acc), 0);
         return { key, count };
@@ -43,10 +40,10 @@ const simpleBotReply = (input: string): string => {
     );
 
     if (bestMatch.count > 0) {
-        return bestMatch.key; // return tag key instead of message
+        return bestMatch.key;
     }
 
-    return "no-match"; // or return '' or some default value if no match
+    return "no-match";
 };
 
 

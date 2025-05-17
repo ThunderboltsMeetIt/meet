@@ -5,7 +5,6 @@ import TopBar from "@/components/topBar/topBar.tsx";
 import {useState, type SetStateAction} from "react";
 import DailyQuotePage from "@/components/dailyquotepage/dailyquotepage.tsx";
 import IntroPage from "@/components/intro-page/IntroPage.tsx";
-// import CalendarView from "@/components/calendarView/calendarView.tsx";
 import {DatabaseContext} from "@/lib/database.ts";
 import {PageContext} from "@/lib/currentPage.ts";
 import {UserContext} from "@/lib/currentUser.ts";
@@ -124,14 +123,6 @@ function App()
                                 {(currentPage == "calendar" || showAllPages) && <CalendarView />}
                                 { showAllPages && <hr />}
                                 {(currentPage == "Stoicism" || showAllPages) && <InfoFrameCategory categoryName= 'Stoicism'/>}
-
-                                { showAllPages && <>
-                                    <hr />
-
-
-                                    <h1 className="text-5xl">Tu są losowe testy poniżej</h1>
-                                    <InterpretationList />
-                                </>}
                             </main>
                         </UserContext.Provider>
                     </PageContext.Provider>

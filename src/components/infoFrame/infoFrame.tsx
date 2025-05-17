@@ -19,15 +19,17 @@ export default function InfoFrameCategory({ categoryName }) {
             .filter(([_, quote]) => quote.categoryId === categoryId);
 
     return (
-            <div className="space-y-4">
-                <h1>Quotes in Category: {categoryName}</h1>
+            <div className="m-5 flex flex-row">
+                <div className="mx-auto w-[600px] flex flex-col">
+                    <h1 className="my-5 text-2xl">Quotes in Category: {categoryName}</h1>
 
-                {matchingQuotes.map(([id, quote]) => (
-                        <div key={id} className="infoFrame-container">
-                            <div className="infoFrame-text">{quote.title}</div>
-                            <p className="source">Source: {database.sources[quote.sourceId]?.name}</p>
-                        </div>
-                ))}
+                    {matchingQuotes.map(([id, quote]) => (
+                            <div key={id} className="infoFrame-container">
+                                <div className="infoFrame-text">{quote.title}</div>
+                                <p className="source">Source: {database.sources[quote.sourceId]?.name}</p>
+                            </div>
+                    ))}
+                </div>
             </div>
     );
 }
