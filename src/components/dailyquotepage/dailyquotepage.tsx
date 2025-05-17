@@ -2,7 +2,6 @@ import InterpretationEditor from "@/components/interpretationEditor/interpretati
 import {useContext, useState} from "react";
 import GetDate from "@/components/date/date.tsx";
 import QuoteFrame from "@/components/quoteFrame/quoteFrame.tsx";
-import Interpretation from  "@/components/interpretation/interpretation.tsx";
 import InterpretationList from "@/components/interpretation-list/interpretationList.tsx";
 import {DatabaseContext} from "@/lib/database.ts";
 

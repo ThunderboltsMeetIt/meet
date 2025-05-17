@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import QuoteFrame from "@/components/quoteFrame/quoteFrame.tsx";
 import DailyQuotePage from "@/components/dailyquotepage/dailyquotepage.tsx";
 import { DatabaseContext } from "@/lib/database.ts";
 
@@ -60,9 +59,8 @@ export default function CalendarView() {
     const handleDayClick = (day: number) => {
         const selectedDate = new Date(currentYear, currentMonth, day);
 
-        // Check if the selected date is in the future
         if (selectedDate > today) {
-            setShowModal(false);  // Don't show modal if it's a future date
+            setShowModal(false);
             return;
         }
 
@@ -79,7 +77,6 @@ export default function CalendarView() {
             <div className="p-4 max-w-xl mx-auto">
                 <h1 className="text-3xl font-bold mb-4 text-center">{currentYear}</h1>
 
-                {/* Month selector buttons */}
                 <div className="flex flex-wrap justify-center gap-2 mb-4">
                     {monthNames.map((name, index) => (
                             <button
@@ -94,7 +91,6 @@ export default function CalendarView() {
                     ))}
                 </div>
 
-                {/* Month navigation arrows */}
                 <div className="flex justify-between items-center mb-2">
                     <button
                             className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
@@ -113,14 +109,12 @@ export default function CalendarView() {
                     </button>
                 </div>
 
-                {/* Days of the week header */}
                 <div className="grid grid-cols-7 gap-2 text-center font-semibold mb-1">
                     {daysOfWeek.map((day) => (
                             <div key={day}>{day}</div>
                     ))}
                 </div>
 
-                {/* Days grid */}
                 <div className="grid grid-cols-7 gap-2 text-center">
                     {days.map((day, idx) => {
                         if (!day) return <div key={idx}></div>;

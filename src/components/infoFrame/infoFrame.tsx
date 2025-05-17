@@ -1,9 +1,12 @@
 import { useContext, useState } from "react";
 import { DatabaseContext } from "@/lib/database.ts";
 import './infoFrame.css'
+import {PageContext} from "@/lib/currentPage.ts";
 export default function InfoFrameCategory({ categoryName }) {
     const { database } = useContext(DatabaseContext);
+    const {currentPage, setCurrentPage} = useContext(PageContext);
 
+    console.log(categoryName);
     const categoryId = Object.keys(database.categories).find(
             (id) => database.categories[id].name === categoryName
     );

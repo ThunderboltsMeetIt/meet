@@ -123,12 +123,12 @@ function App()
                                 { showAllPages && <hr />}
                                 {(currentPage == "calendar" || showAllPages) && <CalendarView />}
                                 { showAllPages && <hr />}
-                                {(currentPage == "Stoicyzm" || showAllPages) && <InfoFrameCategory categoryName= 'Stoicyzm'/>}
+                                {(currentPage == "Stoicism" || showAllPages) && <InfoFrameCategory categoryName= 'Stoicism'/>}
 
                                 { showAllPages && <>
                                     <hr />
 
-                                    
+
                                     <h1 className="text-5xl">Tu są losowe testy poniżej</h1>
                                     <InterpretationList />
                                 </>}
